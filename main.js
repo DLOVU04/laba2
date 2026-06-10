@@ -1,8 +1,14 @@
-// grades.js (или в начале main.js)
-const grades = [
-    { name: "Макар", score: 85 },
-    { name: "Денис", score: 92 },
-    { name: "Анна", score: 78 },
-    { name: "Даша", score: 88 },
-    { name: "Студент_X", score: 45 }
-];
+import grades from './grades.js';
+import { calculateAverage, addLetterGrade } from './teamlead.js';
+import { findTopStudent, filterFailed } from './programmer.js';
+
+console.log("Анализ успеваемости\n");
+
+console.log(`Средний балл: ${calculateAverage(grades).toFixed(2)}`);
+console.log(`Лучший студент: ${findTopStudent(grades)}`);
+
+const debtors = filterFailed(grades, 60);
+console.log(`Должники (<60): ${debtors.length ? debtors.join(", ") : "нет"}`);
+
+console.log("\nБуквенные оценки:");
+addLetterGrade(grades).forEach(s => console.log(`${s.name}: ${s.score} → ${s.letter}`));
